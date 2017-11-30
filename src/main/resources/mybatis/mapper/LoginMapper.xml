@@ -2,8 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.firstweb.dao.LoginDAO">
-	<select id="infoSelect" resultType="int" parameterType="String">
+	<select id="IDCheck" resultType="int" parameterType="String">
 		select
 		count(id) from user where id = #{id}
+	</select>
+	
+	<insert id="insertUser" parameterType="com.firstweb.Vo.UserVo">
+		insert into user(id, pw,
+		name, gender, hobby, joinfrom, sns) values(#{id}, #{pw}, #{name},
+		#{gender}, #{hobby}, #{joinfrom}, #{sns})
+	</insert>
+	
+	<select id="login" resultType="com.firstweb.Vo.UserVo" parameterType="String">
+		select
+		* from user where id=#{0} and pw=#{1}
 	</select>
 </mapper>

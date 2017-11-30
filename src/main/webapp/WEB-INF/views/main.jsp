@@ -12,7 +12,7 @@
 		<form action="/login_req" method="POST" onsubmit="return login_check()">
 			id : <input type="text" name="id" class="id"><br />
 			pw : <input type="text" name="pw" class="pw"><br />
-			<input type="button" value="회원가입" onclick="location.href='/join'"><input type="submit" value="로그인">
+			<input type="button" value="회원가입" onclick="location.href='/join'"><input type="submit" value="로그인" onsubmit="login_check()">
 		</form>
 	</div>
 </body>
