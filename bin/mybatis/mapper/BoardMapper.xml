@@ -2,8 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.firstweb.dao.BoardDao">
-<insert id="memo_ins" parameterType="com.firstweb.Vo.BoardVo">
-	insert into board(writter_id, content, date) 
-	values(#{0}, #{1}, now());
-</insert>
+	<insert id="board_ins" parameterType="com.firstweb.Vo.BoardVo">
+		insert into board(writter_id, content, date, category)
+		values(#{writter_id}, #{content}, now(), #{category});
+	</insert>
+
+	<insert id="free_ins" parameterType="com.firstweb.Vo.BoardVo">
+		insert into board_free(board_id, title, permission) values(#{id}, #{title},
+		#{permission});
+	</insert>
 </mapper>

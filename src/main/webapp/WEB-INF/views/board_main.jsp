@@ -8,13 +8,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Retr0 Gallery</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 	<h2>방명록</h2>
-	<form action="/memo_ins" method="post">
-	<input type="hidden" name="writter_id" value=<%= vo.getId() %>/>
-	<input type="text" name="content"/>
-	<input type="submit" value="올리기"/>
+	<form action="/memo_ins" method="post" onsubmit="return textEmptyCheck()">
+		<input type="hidden" name="writter_id" value=<%= vo.getId() %> />
+		<input type="text" name="content" data-korea="내용"/>
+		<input type="submit" value="올리기"/>
 	</form>
-</bod`y>
+	
+	<h2>자유게시판</h2>
+	<input type="button" value="글쓰기" onclick="location.href='/free_write'"/>
+</body>
+<script>
+	function textEmptyCheck(){
+		var value = true;
+		$("input[type=text]").each(function(){
+			if($(this).val().trim() == ''){
+				alert($(this).attr("data-korea")+"를 입력하지 않으셨습니다.");
+				$(this).focus()
+				value=false;
+			}else{
+				alert(1);
+			}
+		})
+		return value;
+	}
+
+</script>
 </html>

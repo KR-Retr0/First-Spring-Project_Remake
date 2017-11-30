@@ -61,8 +61,11 @@ public class LoginController {
 		
 		if(user!=null) {
 			session.setAttribute("user", user);
+			return "/board_main";
+		}else {
+			return "/main";
 		}
-		return "/board_main";
+		
 	}
 
 	@RequestMapping(value = "/join.ajax", produces = "application/text; charset=utf8")

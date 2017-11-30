@@ -17,8 +17,8 @@
 		PW : <input type="text" name="pw" class="pw" data-korea="패스워드"><br />
 		PW 확인 : <input type="text" class="pwCheck" data-korea="패스워드 확인란"><br />
 		닉네임 : <input type="text" name="name" class="pw" data-korea="닉네임"><br />
-		성별 : <input type = "radio" class = "gender" value = "male"/>남자
-		<input type = "radio" class = "gender" value = "female"/>여자
+		성별 : <input type = "radio" class = "gender" name="gender" value = "male"/>남자
+		<input type = "radio" class = "gender" name="gender" value = "female"/>여자
 		<br /> 취미<br />
 		<input type="checkbox" class="like" name="like" value="soccer">축구
 		<input type="checkbox" class="like" name="like" value="basketball">농구
