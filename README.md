@@ -14,3 +14,9 @@ I made a simple Board Writter tool.
 Version 4(2017-11-30)<br>
 Sing up/Sing in using session complete
 Image uploader 50%
+
+Version 5 (2017-12-21)<br>
+Image Uploader and Write Tool is replaced to SmartEditor2(SE2).
+<a>https://github.com/naver/smarteditor2</a>
+
+I am working on pagenation now. Thanks to @HojinJava.
