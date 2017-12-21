@@ -12,6 +12,7 @@
 </head>
 <body>
 	<h2>방명록</h2>
+	
 	<form action="/memo_ins" method="post" onsubmit="return textEmptyCheck()">
 		<input type="hidden" name="writter_id" value=<%= vo.getId() %> />
 		<input type="text" name="content" data-korea="내용"/>
@@ -19,6 +20,9 @@
 	</form>
 	
 	<h2>자유게시판</h2>
+	<div>
+		${pn.navigator }
+	</div>
 	<input type="button" value="글쓰기" onclick="location.href='/free_write'"/>
 </body>
 <script>

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.firstweb.dao.BoardDao">
-	<insert id="board_ins" parameterType="com.firstweb.Vo.BoardVo">
+	<insert id="board_ins" parameterType="com.firstweb.Vo.BoardVo" useGeneratedKeys="true" keyProperty="id">
 		insert into board(writter_id, content, date, category)
 		values(#{writter_id}, #{content}, now(), #{category});
 	</insert>
@@ -11,4 +11,15 @@
 		insert into board_free(board_id, title, permission) values(#{id}, #{title},
 		#{permission});
 	</insert>
+	
+	<select id="getMemo" resultType="com.firstweb.Vo.BoardVo">
+		select * from board where category="memo" order by date desc limit 1;
+	</select>
+	<select id="getFreeBoardList" resultType = "com.firstweb.Vo.BoardVo" parameterType="Integer">
+		SELECT B.ID ID, F.TITLE TITLE, B.WRITTER_ID WRITTER_ID, B.DATE DATE, B.CONTENT CONTENT F.PERMISSION PERMISSION
+		 FROM BOARD B, BOARD_FREE F WHERE B.ID = F.BOARD_ID ORDER BY B.ID DESC LIMIT {start}, {contentCount};
+	</select>
+	<select id="getTotalArticle" resultType="Integer">
+		SELECT COUNT(*) TOTAL FROM BOARD_FREE;
+	</select>
 </mapper>

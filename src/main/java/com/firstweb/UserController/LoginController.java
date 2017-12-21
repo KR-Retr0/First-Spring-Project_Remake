@@ -61,7 +61,7 @@ public class LoginController {
 		
 		if(user!=null) {
 			session.setAttribute("user", user);
-			return "/board_main";
+			return "redirect:/board_main";
 		}else {
 			return "/main";
 		}

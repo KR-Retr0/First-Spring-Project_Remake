@@ -10,13 +10,14 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-	<form action="/free_ins" method="post" onsubmit="return freeEmptyCheck()" enctype="multipart/form-data">
+	<form action="/free_ins" method="post" enctype="multipart/form-data" onsubmit="return submitContents();">
 		제목 : <input type="text" name="title" /><br />
 		<input type="hidden" name="writter_id" value=<%= vo.getId() %> />
-		<br /><input type="file" name="image" value="사진"/>
-				<input type="hidden" name="image_name" value="image">
 		<br />
-		<textarea id="content" name="content" cols="90" rows="10" data-korea="내용">내용을 입력하세요.</textarea><br />
+		
+		<br />
+		
+		<textarea name = "content" id="textAreaContent" rows="10" cols="100" data-korea="내용"></textarea><br />
 		<input type="radio" name="permission" class="permission" value="0">공개
 		<input type="radio" name="permission" class="permission" value="1">비공개
 		<br /><input type="submit">
@@ -27,40 +28,41 @@
 		$(this).text('');
 	})
 	
-	function freeEmptyCheck(){
-		var value = true;
-		$("input[type=text]").each(function(){
-			if($(this).val().trim() == ''){
-				alert($(this).attr("data-korea")+"를 입력하지 않으셨습니다.");
-				$(this).focus()
-				value=false;
-			}
-		})
-		$("textarea").each(function(){
-			if($(this).val().trim() == ''){
-				alert($(this).attr("data-korea")+"를 입력하지 않으셨습니다.");
-				$(this).focus()
-				value=false;
-			}
-		})
-
-		if(value==false){
-			return value;
-		}
-		var Object = $(".permission");	
-		var check="0";
-		for(var j=0;j<Object.length;j++){
-			if($(Object[j]).is(":checked")){
-				check="1";
-				break;
-			}
-		}
-		if(check=="0"){
-			alert("공개범위를 체크해 주세요!");
-			value = false;
-			break;
-		}
-		return value;
-	}
 </script>
+<!-- Smart Editor -->
+<script type="text/javascript" src="../se2/js/HuskyEZCreator.js" charset="utf-8"></script>	 
+ 
+<!-- Smart Editor -->
+<script type="text/javascript">
+ 
+var oEditors = [];
+$(function(){
+	
+	nhn.husky.EZCreator.createInIFrame({
+	    oAppRef: oEditors,
+	    elPlaceHolder: "textAreaContent",
+	    sSkinURI: "../se2/SmartEditor2Skin.html",
+	    fCreator: "createSEditor2"
+	});
+	
+});
+
+ 
+//‘저장’ 버튼을 누르는 등 저장을 위한 액션을 했을 때 submitContents가 호출된다고 가정한다.
+function submitContents(elClickedObj) {
+    // 에디터의 내용이 textarea에 적용된다.
+    oEditors.getById["textAreaContent"].exec("UPDATE_CONTENTS_FIELD", [ ]);
+    
+    return true;
+ 
+}
+ 
+// textArea에 이미지 첨부
+function pasteHTML(filepath){
+    var sHTML = "<img src='/picture/"+filepath+"'>";
+    oEditors.getById["textAreaContent"].exec("PASTE_HTML", [sHTML]);
+}
+ 
+</script>
+
 </html>
